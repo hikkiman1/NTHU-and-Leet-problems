@@ -1,0 +1,10 @@
+a=int(input())
+for i in range(a):
+    length=int(input())
+    day=list(map(int,input().split()))
+    maxsum=day[0]
+    idk=day[0]
+    for j in range(1,length):
+        maxsum=max(day[j],maxsum+day[j])
+        idk=max(maxsum,idk)
+    print(idk)

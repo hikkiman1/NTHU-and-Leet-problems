@@ -1,0 +1,14 @@
+
+n=int(input())
+
+uoc_cua_uoc=[0]*n
+for i in range(1,n):
+    for j in range(i,n,i):
+        uoc_cua_uoc[j]+=1
+print(uoc_cua_uoc)
+tong=0
+for i in range(1,n):
+    soboi=(n-1)//(i)
+    tong+=uoc_cua_uoc[i]*soboi
+print(tong)
+            

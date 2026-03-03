@@ -1,0 +1,46 @@
+def queue():
+    Q = []
+
+    def show():
+        print(Q)
+
+    def push(v):
+        Q.append(v)
+
+    def pop():
+        try:
+            print(Q.pop(0))
+        except:
+            print('empty')
+
+    def size():
+        print(len(Q))
+
+    def clear():
+        Q.clear()
+
+    D = {
+        'show':lambda x:show(),
+        'push':lambda x:push(int(x)),
+        'pop':lambda x:pop(),
+        'size':lambda x:size(),
+        'clear':lambda x:clear()
+        #fill the command here
+    }
+
+    for _ in range(n):
+        line = input()
+
+        words = line.split()
+        cmd = words[0]
+        if len(words)>1:
+            x=words[1]
+        else:
+            x=''
+        D[cmd](x)
+        
+        ##call the command here
+
+n = int(input())
+queue()
+

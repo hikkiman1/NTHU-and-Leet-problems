@@ -1,0 +1,20 @@
+from ast import literal_eval
+
+def gen(tree: tuple):
+    """
+    The tree is a tuple (data, [child1, child2, ...])
+    Each child is its own tree
+    The list of childs can be empty.
+    """
+    yield tree[0]
+    if tree[1]:
+        for i in tree[1]:
+            yield from gen(i)
+            
+
+genVar = gen(literal_eval(input()))
+while True:
+    try:
+        print(next(genVar))
+    except StopIteration:
+        break

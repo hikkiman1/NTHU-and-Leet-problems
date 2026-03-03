@@ -1,0 +1,17 @@
+a=int(input())
+for i in range(a):
+    k=int(input())
+    b=list(map(int,input().split()))
+    if k==1:
+        print(b[0])
+        continue
+    c=[0]
+    d=0
+    for k in range(len(b)):
+        d=b[k]+d
+        c.append(d)
+    e=[]
+    for q in range(len(c)):
+        for p in range(q,len(c)):
+            e.append(c[p]-c[q])
+    print(max(e))

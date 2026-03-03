@@ -1,0 +1,44 @@
+items = {}
+
+# Functions
+def add(key,value):
+    items[key]=items.get(key,0) + int(value)
+
+def remove(key, value):
+    if key in items:
+        items[key] -= int(value)
+        if items[key] <= 0:
+            del items[key]
+
+def show():
+    print(items)
+
+def count():
+    print(sum(items.values()))
+
+def clear():
+    items.clear()
+
+# Command mapping using lambdas
+actions = {
+    'add': lambda args:add(args[0],args[1]),
+    'remove': lambda args:remove(args[0],args[1]),
+    'show': lambda args:show(),
+    'count': lambda args:count(),
+    'clear': lambda args:clear()
+}
+
+# Main program
+n = int(input())
+for _ in range(n):
+    cmd = input().strip()
+    words=cmd.split()
+    command=words[0]
+    if command in ['add','remove']:
+        args=input().split()
+    else:
+        args=[]
+    actions[command](args)
+
+    # todo
+

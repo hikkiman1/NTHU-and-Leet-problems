@@ -1,0 +1,22 @@
+in_order = list(map(int, input().split()))
+post_order = list(map(int, input().split()))
+
+def pre_order(io,po):
+    if not po:
+        return None
+    
+    parent_val = po[-1]
+    print(parent_val, end=' ')
+    for i in range(len(io)):
+        if io[i] == parent_val:
+            slice_part = i
+            break
+    left_root_io = io[:slice_part]
+    right_root_io = io[slice_part + 1:]
+
+    left_root_po = po[:len(left_root_io)]
+    right_root_po = po[len(left_root_io):-1]
+
+    pre_order(left_root_io,left_root_po)
+    pre_order(right_root_io,right_root_po)
+pre_order(in_order,post_order)
