@@ -1,0 +1,80 @@
+class Student:
+    instances = {}
+
+    def __init__(self, name, score, i, j):
+        self.name = name
+        self.score = score
+        self.i = i
+        self.j = j
+
+    def set_score(self, score:int) -> None:
+        if score>100:
+            self.score=100
+        elif score<0:
+            self.score=0
+        else:
+            self.score=score
+             # TODO set the new score for this student, and make sure the score is in valid range
+
+    def get_message(self) -> str:
+        return f"{self.name} at ({self.i}, {self.j}) scored {self.score}" # TODO get the message by the required format
+
+
+class PotatosClass:
+    students = dict()
+
+    def __init__(self, n, m):
+        self.seats = [[None]*m for _ in range(n)]
+
+    def record_students(self):
+        for i in range(n*m):
+            name, score, i, j = input().split()
+
+            score, i, j = int(score), int(i), int(j)
+
+            student = Student(name, score, i, j)
+            self.students[name] = self.seats[i][j] = student
+
+    def command_score(self, stu_name:str, new_score:int) -> None:
+        self.students[stu_name].set_score(new_score)
+
+    def command_rotate(self, x:int, y:int, width:int) -> None:
+        test=[]
+        for i in range(width):
+            hang=[]
+            for j in range(width):
+                hang.append(self.seats[j+x][i+y])
+            hang.reverse()
+            test.append(hang)
+        for i in range(width):
+            for j in range(width):
+                student=test[i][j]
+                self.seats[i+x][j+y]=student
+                student.i=i+x
+                student.j=j+y
+         # TODO rotate the student's seats
+
+    def get_best_student(self) -> Student:
+        best=None
+        for i in self.seats:
+            for hocsinh in i:
+                if best is None or hocsinh.score>best.score:
+                    best=hocsinh
+        return best
+         # TODO get the best scored student
+
+
+n, m, k = map(int, input().split())
+
+course = PotatosClass(n, m)
+course.record_students()
+
+for i in range(k):
+    commands = input().split()
+
+    if(commands[0] == "score"):
+        course.command_score(commands[1], int(commands[2]))
+    elif(commands[0] == "rotate"):
+        course.command_rotate(int(commands[1]), int(commands[2]), int(commands[3]))
+
+print(course.get_best_student().get_message())

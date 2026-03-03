@@ -1,0 +1,8 @@
+def count(inStr: str)->dict:
+    #Write your code here
+    sech={}
+    word=inStr.split()
+    for i in word:
+        sech[i]=sech.get(i,0)+1
+    return sech
+print(sorted(count(input().lower()).items()))

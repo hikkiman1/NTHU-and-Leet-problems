@@ -1,0 +1,25 @@
+given_word=input()
+length=int(input())
+final_word=input()
+
+words=list(given_word)
+needed_words=list(final_word)
+if len(needed_words)>length:
+    print('NO')
+    exit()
+num_of_word={}
+
+for i in words:
+    if i in num_of_word:
+        num_of_word[i]+=1
+    else:
+        num_of_word[i]=1
+
+for i in needed_words:
+    if i not in num_of_word or num_of_word[i]==0:
+        print("NO")
+        break
+    else:
+        num_of_word[i]-=1
+else:
+    print("YES")

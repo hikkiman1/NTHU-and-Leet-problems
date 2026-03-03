@@ -1,0 +1,21 @@
+#trump
+#again
+import ast
+tree = ast.literal_eval(input().strip())
+
+def print_path(data,path=None):
+    if path is None:
+        path = []
+
+    if isinstance(data,list):
+        new_path=path+[data[0]]
+        if len(data)==1:
+            print('Deleting /',end='')
+            print('/'.join(new_path))
+        else:
+            for i in data[1:]:
+                print_path(i,new_path)
+            print('Deleting /',end='')
+            print('/'.join(new_path))
+
+print_path(tree)

@@ -1,0 +1,38 @@
+#cach 1
+rows,cols,time=map(int,input().split())
+time=time%4
+pic=[]
+for i in range(rows):
+    pic.append(list(map(int,input().split())))
+
+
+def rotate(board,row,col,cases):
+    test=[]
+    for i in range(col):
+        hang=[]
+        for j in range(row):
+            hang.append(board[j][i])
+        hang.reverse()
+        test.append(hang)
+    for i in range(cases-1):
+        test=rotate(test,col,row,cases-2)
+    return test
+rotated_pic=rotate(pic,rows,cols,time)
+for row in rotated_pic:
+    print(' '.join(str(item) for item in row))
+#cach2
+rows,cols,time=map(int,input().split())
+time=time%4
+pic=[]
+for i in range(rows):
+    pic.append(list(map(int,input().split())))
+
+def rotate2(board):
+    board=[list(row) for row in zip(*board)]
+    for i in board:
+        i.reverse()
+    return board
+for i in range(time):
+    pic=rotate2(pic)
+for i in pic:
+    print(' '.join(str(j) for j in i))

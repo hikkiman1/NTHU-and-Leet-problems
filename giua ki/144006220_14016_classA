@@ -1,0 +1,22 @@
+test_cases=int(input())
+matrix_size=int(input())
+matrix=[]
+
+for i in range(matrix_size):
+    matrix.append(list(map(int,input().split())))
+
+rows=[0]*matrix_size
+collumns=[0]*matrix_size
+diag_1={}
+diag_2={}
+for i in range(matrix_size):
+    for j in range(matrix_size):
+        rows[i]+=matrix[i][j]
+        collumns[j]+=matrix[i][j]
+        diag_1[i+j]=diag_1.get(i+j,0)+matrix[i][j]
+        diag_2[i-j]=diag_2.get(i-j,0)+matrix[i][j]
+    
+for i in range(test_cases):
+    a,b=map(int,input().split())
+    brightness=rows[a]+collumns[b]+diag_1[a+b]+diag_2[a-b]-3*matrix[a][b]
+    print(brightness)

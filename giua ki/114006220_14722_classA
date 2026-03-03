@@ -1,0 +1,22 @@
+_n, _d = map(int, input().split())
+
+_grid = []
+for _ in range(_n):
+    _row = []
+    for num in input().split():
+        _row.append(int(num))
+    _grid.append(_row)
+diag={}
+for i in range(2*_n-1):
+    diag[i]=[]
+for i in range(_n):
+    for j in range(_n):
+        diag[i+j].append(_grid[i][j])
+for i in diag:
+    if _d==0 and i%2==1:
+        diag[i].reverse()
+    if _d==1 and i%2==0:
+        diag[i].reverse()
+    for j in diag[i]:
+        print(j,end='')
+print()

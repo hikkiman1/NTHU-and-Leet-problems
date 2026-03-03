@@ -1,0 +1,45 @@
+length=int(input())
+limit=int(input())
+hidden_word=input()
+remember_word=[]
+hint=1
+while limit>0:
+    test=input()
+    if test=='chance':
+        print(limit)
+        continue
+    
+    elif test[:5]=='guess':
+        if test[6:]==hidden_word:
+            print('WIN')
+            break
+        else:
+            print("WRONG")
+    elif test[:5]=="check":
+        for i in hidden_word:
+            if test[6]==i or i in remember_word:
+                remember_word.append(i)
+                print(i,end='')
+            else:
+                print('_',end='')
+        print()
+    elif test == 'hint':
+        if hint==0:
+            print('Already Use')
+            continue
+        else:
+            hint-=1
+            for i in hidden_word:
+                if i not in remember_word:
+                    remember_word.append(i)
+                    break
+            for i in hidden_word:
+                if i in remember_word:
+                    print(i,end='')
+                else:
+                    print('_',end='')
+            print()
+        
+    limit-=1
+if limit==0:
+    print('LOSE')

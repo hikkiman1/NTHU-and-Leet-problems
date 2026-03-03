@@ -1,0 +1,20 @@
+first_word=list(input())
+second_word=list(input())
+
+first={}
+
+for i in first_word:
+    if i in first:
+        first[i]+=1
+    else:
+        first[i]=1
+
+diff=0
+for i in second_word:
+    if i in first:
+        first[i]-=1
+for i in first:
+    if first[i]>0:
+        diff+=first[i]
+
+print(diff)
